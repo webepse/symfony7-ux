@@ -1,0 +1,12 @@
+body {
+    background-color: skyblue;
+}
+
+.full{
+    min-height: 100vh;
+}
+
+.toggle-password-button{
+    position: relative !important;
+    top: 0 !important;
+}

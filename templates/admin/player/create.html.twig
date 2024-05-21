@@ -1,0 +1,16 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Ajouter un joueur{% endblock %}
+
+{% block body %}
+<turbo-frame id="addPlayer">
+    <div class="container">
+        <h1>Ajouter un joueur</h1>
+        {{ form_start(myForm, {'action': path('admin_players_create'), 'method':'POST'}) }}
+
+            {{form_widget(myForm)}}
+            <button type="submit" class='btn btn-success'>Ajouter</button>
+        {{form_end(myForm)}}
+    </div>
+</turbo-frame>    
+{% endblock %}

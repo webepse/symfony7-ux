@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration des teams{% endblock %}
+
+{% block body %}
+    <div class="container-fluid full">
+        <h1 class="my-5">Gestion des teams</h1>
+        <a href="{{path('admin_teams_create')}}" class="btn btn-primary my-2">Ajouter</a>
+        <table class="table table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Logo</th>
+                    <th >Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in pagination.data %}
+                    <tr class="text-center">
+                        <td>{{team.id}}</td>
+                        <td>{{team.name}}</td>
+                        <td>
+                              <img src="/uploads/{{team.logo}}" alt="logo de {{team.name}}" class="col-1 img-fluid">
+                        </td>
+                        <td>
+                            <a href="{{path("admin_teams_edit",{"id":team.id})}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                            <a href="{{path("admin_teams_delete",{"id":team.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {# pagination #}
+       {{pagination.display()}}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration des teams{% endblock %}
+
+{% block body %}
+    <div class="container-fluid full">
+        <h1 class="my-5">Gestion des players</h1>
+        <turbo-frame id="addPlayer">
+            <a href="{{path('admin_players_create')}}" class="btn btn-primary my-2">Ajouter</a>
+        </turbo-frame>
+        <table class="table table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Numéro</th>
+                    <th>Date de naissance</th>
+                    <th>Equipe</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in pagination.data %}
+                    <tr class="text-center">
+                        <td>{{player.id}}</td>
+                        <td>{{player.lastName}} {{player.firstName}}</td>
+                        <td>
+                             {{player.number}}
+                        </td>
+                        <td>
+                             {{player.birthday |date("m/d/Y")}}
+                        </td>
+                        <td>
+                             {{player.team.name}}
+                        </td>
+                        <td>
+                            <a href="{{path("admin_players_edit",{"id":player.id})}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                            <a href="{{path("admin_players_delete",{"id":player.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {# pagination #}
+       {{pagination.display()}}
+
+    </div>
+{% endblock %}
